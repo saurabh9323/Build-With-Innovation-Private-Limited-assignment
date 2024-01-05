@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useProducts from "../utils/useProducts.js";
 import ProductCard from "./ProductCard.jsx";
-import { FilterData } from "../utils/helper.js";
+import { FilterData, ProductData } from "../utils/helper.js";
 import Shimmer from "./Shimmer.js";
 import PriceFilter from "./PriceFilter.js";
 
@@ -18,6 +18,10 @@ const Products = () => {
 
     setFilterdProducts(filteredData);
   };
+  const handleFilterProduct = () => {
+    const data = ProductData(searchInput, products);
+    setFilterdProducts(data);
+  };
 
   return products?.length == 0 ? (
     <Shimmer />
@@ -26,7 +30,7 @@ const Products = () => {
       <div className="search-container bg-backColor flex m-2 ">
         <input
           type="text"
-          className="search-input mx-2 w-[300px] rounded-md text-center p-1 hover:bg-customBlue text-black"
+          className="rounded-md text-center m-2 hover:bg-customBlue text-black"
           placeholder="search"
           value={searchInput}
           onChange={(e) => {
@@ -34,11 +38,8 @@ const Products = () => {
           }}
         />
         <button
-          className="bg-customBlue p-2 rounded-md hover:bg-gray-100 text-black"
-          onClick={() => {
-            const data = FilterData(searchInput, products);
-            setFilterdProducts(data);
-          }}
+          className="p-2 w-[100px] bg-customBlue m-2 ml-4  rounded-xl hover:bg-sky-800"
+          onClick={handleFilterProduct}
         >
           Search
         </button>

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./component/Header";
 import Footer from "./component/Footer";
-
+import { Outlet } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -16,9 +16,9 @@ function App() {
       <Router>
         <Header />
         <Routes>
-          <Route path="/" element={<Products />}>
+          <Route path="/" element={<Outlet />}>
             <Route path="/login" element={<Login />} />
-
+            <Route index element={<Products />} />
             <Route path="cart" element={<Cart />} />
           </Route>
           <Route path="*" element={<ErrorPage />} />

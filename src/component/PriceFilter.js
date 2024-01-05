@@ -1,28 +1,31 @@
+// PriceFilter.js
 import React, { useState } from "react";
 
 const PriceFilter = ({ handlePriceFilter }) => {
   const [maxPrice, setMaxPrice] = useState("");
 
-  const applyPriceFilter = () => {
+  const handleInputChange = (e) => {
+    setMaxPrice(e.target.value);
+  };
+
+  const handleFilter = () => {
     handlePriceFilter(maxPrice);
   };
 
   return (
-    <div className="price-filter-container">
+    <div>
       <input
-        type="number"
-        className="price-input mx-2 w-[150px] rounded-md text-center p-1 hover:bg-customBlue text-black"
+        type="text"
         placeholder="Max Price"
         value={maxPrice}
-        onChange={(e) => {
-          setMaxPrice(e.target.value);
-        }}
+        onChange={handleInputChange}
+        className="ml-4"
       />
       <button
-        className="bg-customBlue p-2 rounded-md hover:bg-gray-100 text-black"
-        onClick={applyPriceFilter}
+        onClick={handleFilter}
+        className="p-2 w-[100px] bg-customBlue m-2 ml-4  rounded-xl hover:bg-sky-800"
       >
-        Apply Price Filter
+        Apply Price
       </button>
     </div>
   );
